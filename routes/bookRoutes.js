@@ -6,6 +6,8 @@ module.exports = function () {
 
     router.post('/addBook', (bookCtrl.addBook));
     router.get('/getBooks', (bookCtrl.getBooks));
+    router.get('/books/:id', (bookCtrl.getOneBook));
+    router.patch('/books/:id', (bookCtrl.updateOneBook));
 
 
     return router;

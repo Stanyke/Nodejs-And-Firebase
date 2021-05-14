@@ -18,7 +18,7 @@ class bookService{
             }
 
             let data = await firestore.collection('students').doc().set(options)
-            return {"data": {"success": true, "message": 'Book saved', data}, "statusCode": 200}
+            return {"data": {"success": true, "message": 'Book saved', data}, "statusCode": 201}
         }
         catch(err){
             return {"data": {"success": false, "message": err.message}, "statusCode": 500}
@@ -44,6 +44,41 @@ class bookService{
                 bookArray.push(gottenBook);
             }
             return {"data": {"success": true, "message": 'All books', "data": bookArray}, "statusCode": 200}
+        }
+        catch(err){
+            return {"data": {"success": false, "message": err.message}, "statusCode": 500}
+        }
+    }
+
+    getOneBook = async (params) => {
+        try{
+            let {id} = params
+            if (!id)
+            {
+                return {"data": {"success": false, "message": 'Request failed due to all required inputs were not included', "required inputs": "id"}, "statusCode": 417}
+            }
+
+            let data = await firestore.collection('students').doc(id).get()
+            if(data.empty){
+                return {"data": {"success": false, "message": 'Book with such ID was not found'}, "statusCode": 404}
+            }
+            return {"data": {"success": true, "message": 'Book ready', "data": data.data()}, "statusCode": 200}
+        }
+        catch(err){
+            return {"data": {"success": false, "message": err.message}, "statusCode": 500}
+        }
+    }
+
+    updateOneBook = async (params, options) => {
+        try{
+            let {id} = params
+            if (!id)
+            {
+                return {"data": {"success": false, "message": 'Request failed due to all required inputs were not included', "required inputs": "id"}, "statusCode": 417}
+            }
+            
+            await firestore.collection('students').doc(id).update(options)
+            return {"data": {"success": true, "message": 'Book updated'}, "statusCode": 200}
         }
         catch(err){
             return {"data": {"success": false, "message": err.message}, "statusCode": 500}

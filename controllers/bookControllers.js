@@ -26,4 +26,10 @@ module.exports = function bookController() {
         const data = await bookServiceInstance.updateOneBook(req.params, req.body);
         return res.status(data.statusCode).json(data.data);
     }
+
+    //Delete one book
+    this.deleteOneBook = async (req, res) => {
+        const data = await bookServiceInstance.deleteOneBook(req.params);
+        return res.status(data.statusCode).json(data.data);
+    }
 }

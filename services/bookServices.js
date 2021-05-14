@@ -1,6 +1,5 @@
 const firebase = require('../utils/db')
 const firestore = firebase.firestore()
-const Book = require('../models/book')
 const textCaseHandler = require("../utils/textCaseHandler")
 
 class bookService{
@@ -79,6 +78,22 @@ class bookService{
             
             await firestore.collection('students').doc(id).update(options)
             return {"data": {"success": true, "message": 'Book updated'}, "statusCode": 200}
+        }
+        catch(err){
+            return {"data": {"success": false, "message": err.message}, "statusCode": 500}
+        }
+    }
+
+    deleteOneBook = async (params) => {
+        try{
+            let {id} = params
+            if (!id)
+            {
+                return {"data": {"success": false, "message": 'Request failed due to all required inputs were not included', "required inputs": "id"}, "statusCode": 417}
+            }
+            
+            await firestore.collection('students').doc(id).delete()
+            return {"data": {"success": true, "message": 'Book deleted'}, "statusCode": 200}
         }
         catch(err){
             return {"data": {"success": false, "message": err.message}, "statusCode": 500}

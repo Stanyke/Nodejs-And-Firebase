@@ -1,0 +1,34 @@
+{
+  "name": "nodejs-and-firebase",
+  "version": "1.0.0",
+  "description": "This is a simple crud nodejs app that uses firebase store for it's storage servcies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stanyke/Nodejs-And-Firebase.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "Firebase",
+    "Storage",
+    "NoSQL"
+  ],
+  "author": "Stanley Chibuike",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stanyke/Nodejs-And-Firebase/issues"
+  },
+  "homepage": "https://github.com/Stanyke/Nodejs-And-Firebase#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "firebase": "^8.6.1",
+    "nodemon": "^2.0.7"
+  }
+}
